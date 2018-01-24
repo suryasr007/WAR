@@ -29,7 +29,7 @@ Set up environmental variables for the app.
 
 # Run
 1. Make sure the mysql/maria service is started and running.
-2. Setup the Environment
+2. Setup the Environment.
 3. Install all the dependencies.
     ```javascript
     npm install
