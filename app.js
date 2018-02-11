@@ -20,6 +20,9 @@ var app = express();
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
+app.use(express.static(path.join(__dirname, "public")));
+
 app.use(helmet());
 app.use(cors());
 app.use(compression());
@@ -27,11 +30,11 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(auth.auth.connect(auth.basic));
+// app.use(express.static(path.join(__dirname, 'public')));
+// app.use();
 
 // app.use(subdomain('api', projects));
-app.use('/api', api);
+app.use('/api', auth.auth.connect(auth.basic), api);
 // app.use('/api/trainings', projects);
 
 // catch 404 and forward to error handler

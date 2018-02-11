@@ -1,7 +1,9 @@
 var express = require('express');
 const url = require('url');
-var router = express.Router();
+var showdown  = require('showdown')
 var model = require('./model');
+
+var router = express.Router();
 
 var err_obj = new Error();
 
@@ -17,7 +19,13 @@ var url_validation = (_url)=>{
 var upload_record =  function(req, res, next) {
   table_name = url_validation(req.url);
   let body = req.body;
+  let converter = new showdown.Converter({
+    tables: true
+  });
+  html      = converter.makeHtml(body.description);
+  body.description = JSON.stringify(html);
 
+  // console.log(body);
   if(!body.title){
     err_obj.code = "Title should not be empty";
     err_obj.code = "TITLE_EMPTY";
