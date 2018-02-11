@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var compression = require('compression');
 var helmet = require('helmet');
+var cors = require('cors');
 
 
 var auth = require("./auth/auth");
@@ -20,6 +21,7 @@ var app = express();
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(helmet());
+app.use(cors());
 app.use(compression());
 app.use(logger('dev'));
 app.use(bodyParser.json());
